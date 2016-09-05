@@ -12,16 +12,16 @@ int main(){
 
 	cin  >> str;
 
-	char* result = compress(str);
+	compress(str);
 
-	cout << "The result is:" << endl << result << endl;
+	cout << "The result is:" << endl << str << endl;
 }
 
 void compress(char* str){
 	char compressed[300];
 
 	char lastChar = '\0';
-	int count = 0;
+	int count = 1;
 	int position = 0;
 
 	for(int i = 0; i != strlen(str); i ++){
@@ -35,13 +35,16 @@ void compress(char* str){
 			} else{
 			}
 			lastChar = str[i];
-			count = 0;
+			count = 1;
 		}
 	}
 
-	compressed[position] = '\0';
+    compressed[position] = lastChar;
+    compressed[position + 1] = count + '0';
+
+	compressed[position + 2] = '\0';
 
 	if(strlen(compressed) <= strlen(str)){
-		str = *compress;
+		strcpy(str, compressed);
 	}
 }
