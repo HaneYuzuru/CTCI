@@ -3,7 +3,7 @@
 
 using namespace std;
 
-char* compress(char* str);
+void compress(char* str);
 
 int main(){
 	char str[300];	
@@ -17,7 +17,7 @@ int main(){
 	cout << "The result is:" << endl << result << endl;
 }
 
-char* compress(char* str){
+void compress(char* str){
 	char compressed[300];
 
 	char lastChar = '\0';
@@ -41,9 +41,7 @@ char* compress(char* str){
 
 	compressed[position] = '\0';
 
-	if(strlen(compressed) > strlen(str)){
-		return str;
-	} else{
-		return compressed;
+	if(strlen(compressed) <= strlen(str)){
+		str = *compress;
 	}
 }
