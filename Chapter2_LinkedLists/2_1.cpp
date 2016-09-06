@@ -25,7 +25,7 @@ int main(){
 
     convertStrToLinkedList(str, head);
 
-    //remove1(head);
+    remove1(head);
 
     cout << "The result is:" << endl;
 
@@ -55,12 +55,7 @@ void remove1(Node* head){
                 cursor -> next = cursor -> next -> next;
             } else{
                 isOccurred[cursor -> next -> val] = true;
-            }
-            
-            if(cursor -> next != NULL){
-                cursor = cursor -> next;
-            } else{
-                return;
+				cursor = cursor -> next;
             }
         }
     }
