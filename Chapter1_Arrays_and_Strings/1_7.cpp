@@ -45,29 +45,25 @@ void convert(int* matrix){
 
 	for(int i = 0; i != M; i ++){
 		for(int j = 0; j != N; j ++){
-			cout << matrix[i * M + j] << '\t';
-			if(matrix[i * M + j] == 0){
+			if(matrix[i * N + j] == 0){
 				is_zero_x[j] = true;
 				is_zero_y[i] = true;
 			}
 		}
-		cout << endl;
 	}
 
 	for(int i = 0; i != N; i ++){
 		if(is_zero_x[i] == true){
-			cout << "x" << i << endl;
 			for(int j = 0; j != M; j ++){
-				matrix[j * M + i] = 0;
+				matrix[j * N + i] = 0;
 			}
 		}
 	}
 
 	for(int i = 0; i != M; i ++){
 		if(is_zero_y[i] == true){
-			cout << "y" << i << endl;
 			for(int j = 0; j != N; j ++){
-				matrix[i * M + j] = 0;
+				matrix[i * N + j] = 0;
 			}
 		}
 	}
