@@ -94,29 +94,43 @@ void add(Node* first_head, Node* second_head){
             second_cursor = second_cursor -> next;
         }
     }
-
+	
     int count = diff - 1;
     int sum = 0;
     while(first_cursor != NULL){
         sum = first_cursor -> val + second_cursor -> val;
         
         if(sum > 9){
-            result_cursor -> val = result_cursor -> val + 1;
-            if(result_cursor > 9){
-                two_position_carry[count - 1] = 1;
-                result_cursor -> val = result_cursor -> val - 10;
-            } 
+			if(result_cursor -> val != -1){
+            	result_cursor -> val = result_cursor -> val + 1;
+            	if(result_cursor -> val > 9){
+                	two_position_carry[count - 1] = 1;
+                	result_cursor -> val = result_cursor -> val - 10;
+            	} 
+				result_cursor = result_cursor -> next;
+			} else{
+				result_cursor -> val = 1;
+			}
+			
             Node* newNode = new Node(sum - 10, NULL);
             result_cursor -> next = newNode;
         } else{
-            Node* newNode = new Node(sum, NULL);
-            result_cursor -> next = newNode;
+			if(result_cursor -> val != -1){
+            	Node* newNode = new Node(sum, NULL);
+            	result_cursor -> next = newNode;
+				result_cursor = result_cursor -> next;
+			} else{
+				result_cursor -> val = sum;
+			}
         }
-        result_cursor = result_cursor -> next;
-    }
 
+		first_cursor = first_cursor -> next;
+		second_cursor = second_cursor -> next;
+    }
+	
     //The second round, check if there are some carries
-    bool isConti = true;
+    
+	bool isConti = true;
     bool change = false;
     int position = 0;
     while(isConti){
@@ -145,6 +159,19 @@ void add(Node* first_head, Node* second_head){
             isConti = false;
         }
     }
+	
+	//print the result
+	
+	cout << "The result is:" << endl;
+	result_cursor = result_head;
+
+	while(result_cursor != NULL){
+		cout << result_cursor -> val;
+		result_cursor = result_cursor -> next;
+	}
+	
+	cout << endl;
+	
 }
 
 void convertStrToLinkedList(const string str, Node* head){
